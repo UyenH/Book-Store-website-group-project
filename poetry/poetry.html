@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Citrion Books, Citrion Bookstore, Learning center, bookstore online, writing studio, sundry ">
+    <meta name="description" content="Online Bookstore and Tutoring Center">
+    <link rel="stylesheet" href="../JSFinal.css">
+    <title>Citrion - Books</title>
+    <script src="../JSScript.js"></script>
+    <style>
+        .et {
+            padding-right: 34px;
+        }
+        .ph {
+            padding-right: 29px;
+        }
+        .tp {
+            padding-right: 37px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Demonstrating the submit and reset events.
+        var helpArray = ["Enter your first name",
+            "Enter your last name",
+            "Enter your e-mail",
+            "Enter your phone number ###-###-####",
+            "Enter title of poem",
+            "Enter file with text of poem",
+            "This button submits the form to the server-side script",
+            "This button clears the form", ""];
+        var helpTextDiv;
+        var Animation;
+        var doAnimation = false;
+        var speed = 0.00;
+        var count = 5;
+        var step = 25;
+        var step2 = 0.05;
+        var currentPoem;
+        // initialize helpTextDiv and register event handlers
+        function init() {
+            helpTextDiv = document.getElementById("helpText");
+            // register listeners
+            registerListeners(document.getElementById("first"), 0);
+            registerListeners(document.getElementById("last"), 1);
+            registerListeners(document.getElementById("email"), 2);
+            registerListeners(document.getElementById("phone"), 3);
+            registerListeners(document.getElementById("title"), 4);
+            registerListeners(document.getElementById("File"), 5);
+            registerListeners(document.getElementById("submit"), 6);
+            registerListeners(document.getElementById("reset"), 7);
+            document.getElementById("detail1").addEventListener("click", function () { closeImage("poem1"); });
+            document.getElementById("detail2").addEventListener("click", function () { closeImage("poem2"); });
+            document.getElementById("detail3").addEventListener("click", function () { closeImage("poem3"); });
+            var myForm = document.getElementById("myForm");
+            myForm.addEventListener( "submit", function() { return confirm( "Are you sure you want to submit?" ); }, false);
+            myForm.addEventListener( "reset", function(){ return confirm( "Are you sure you want to reset?" );}, false);
+        }
+        function registerListeners(object, messageNumber) {// 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 5)
+                //object.innerHTML = helpArray[ messageNumber ];
+                object.addEventListener("focus", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+            else
+                object.addEventListener("mouseover", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+
+            // 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 5 )
+                object.addEventListener("blur",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[8]; }, false);
+            else
+                object.addEventListener("mouseout",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[8]; }, false);
+        }
+        function closeImage(poem) {
+                currentPoem = document.getElementById(poem);
+                currentPoem.setAttribute("height", "0px");
+                currentPoem.setAttribute("style", "opacity: 0.0;");
+                doAnimation = true;
+                Animation = window.setInterval("run("+poem+")", 20);
+        }
+        function run() {
+            if (doAnimation) {
+                currentPoem.setAttribute("height", count);
+                currentPoem.setAttribute("style", "opacity: " + speed + ";");
+                count += step;
+                speed += step2;
+            }
+            else {
+                window.clearInterval(Animation);
+                Animation = null;
+                speed = 0.1;
+                count = 10;
+            }
+            if (currentPoem.getAttribute("height") > 386)
+                doAnimation = false;
+        }
+        window.addEventListener("load", init, false);
+    </script>
+    <header>
+        <a href="../home/home.html"><img src="../sharedImages/bookLogo.png" id="Logo" alt="logo" height="80" width="100"></a>
+        Citrion Books &amp; Learning Center
+    </header>
+    <div id="wrapper">
+        <span id="colorPicker">Change Background Color Here</span><p id="Times"></p>
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../book/book.html" class="dropbtn">Books</a>
+                    <div class="dropdown-content">
+                        <a href="../fiction/fiction.html">Fiction</a>
+                        <a href="../nonfiction/nonFiction.html">Non-Fiction</a>
+                        <a href="../comic/comic.html">Comics</a>
+                    </div>
+                </li>
+                <li><a href="../sundry/sundry.html">Sundry</a></li>
+                <li><a href="../about/about.html">About</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <a href="../center/center.html" class="dropbtn">Center</a>
+                    <div class="dropdown-content">
+                        <a href="../tutor/tutor.html">Tutoring</a>
+                        <a href="../writing/writing.html">Studio</a>
+                    </div>
+                </li>
+                <li><a href="../event/event.html">Events</a></li>
+                <li class="dropdown">
+                    <a href="../creative/creative.html" class="dropbtn">Creations</a>
+                    <div class="dropdown-content">
+                        <a href="../poetry/poetry.html">Poetry</a>
+                        <a href="../prose/prose.html">Prose</a>
+                    </div>
+                </li>
+                <li><a href="../membership/membership.html">Membership</a></li>
+            </ul>
+        </nav>
+        <main id="mainTag">
+            <a href="../home/home.html">Home>></a><a href="../creative/creative.html" class="dropbtn">Creations>></a><a href="../poetry/poetry.html">Poetry</a>
+            <h1>Poetry Collection</h1>
+            <p>
+                Here are a list of of poems made by the staff and patrons of Citrion books.All poems are posted
+                anonymously for the privacy of the author. Click on the title of the poem to view the full text.
+            </p>
+            <details id="detail1">
+                <img src="sandman.png" alt="sandman" width="511" height="386" id="poem1">
+                <summary>The Sandman</summary>
+                <pre>
+                Hush dear child, don't 
+                Be scared. I can sense the 
+                clawing your back, digging its way 
+                into your spine. I came to give you
+                the consuming abyss of unconsciousness.
+                Grasp my nocturnal robes and let the 
+                Shadowy serpents coil around you. 
+                My eyes are indiscriminate. 
+                They are void of colors doubt and
+                Mercy. They drain you're the dread
+                from your eyes like a blackhole of
+                infinite emotion. 
+                </pre>
+            </details>
+            <details id="detail2">
+                <img src="streetGum.png" alt="streetGum" width="514" height="386" id="poem2">
+                <summary>Chew, Spit, Pass</summary>
+                <pre>
+                I stroll down the forest of
+                urban monoliths and spires that shadow
+                the grime within its core. I notice
+                a man patrolling with a vigilant
+                intent in his gaze almost hungry as if he was a worn-out
+                plug looking for an outlet to join with.
+                He takes out a strip of mint gum wrapped in thin foil.
+                I see a golden-haired peach breasted woman that is plump and ready for picking
+                his gaze morphed into a mechanical desire that programmed
+                him to latch onto the hunger. His balls pumping with the fuel of the
+                grime of his lust.
+                I hear the saliva ooze as his teeth
+                Grind and chomp onto the
+                sugar coated rubber and
+                he sucks all the sweetness with a thick
+                folding tongue.
+                After he chews, chews, chews
+                The gum spits from the infected mouth onto
+                the sidewalks branded by a
+                    myriad of ebony
+                gum spots like a
+                      Senile dalmatian waiting to be put
+                         Down.
+
+                The gum ages on and
+                Hardens into an irremovable blemish that can never be
+                cleaned.
+                I pass on with a blinded gaze as a step onto the forgotten black spots
+                </pre>
+            </details>
+            <details id="detail3">
+                <img src="yolanda.png" alt="yolanda" width="514" height="386" id="poem3">
+                <summary>Yolanda</summary>
+                <pre>
+                I prepare the table. Laying down
+                the plates and utensils while Nanay
+                finishes frying the bangus and the
+                talong. As I listen to the sound of sizzling
+
+                oil dying way, the crackling of rain
+                rings on the roof. I brush of the sound.
+                "Just another rain storm," I thought.
+                But suddenly I hear the rain drops turn
+                to bullets that bombarded our home. Then
+                Tatay shrieks one word, "Bagyo"
+
+                The water pierced through the concrete walls
+                and the ceiling began to shed tears of preemptive
+                mourning. My feet get buried by the sloshing
+                flood and it swallows away chinelas with its
+                abyssal mouth.  The dinning table and chairs began
+                to float. Crashing into the walls and spilling our meal
+                into the raging water and the lifeless bangus floats on its side.
+
+                The wind blew with wrath
+                Clogging our ears with clouds of cotton
+                drowning out the screams from the outside
+                of people being swept where they stand from outside.
+                Like ants being blown by sadistic child.
+                Then the wind's hands shook our house
+                As if we were a present being ripped open.
+
+                Finally, the battle subsided
+                I see the result of the child's rage
+                With all the blocks scattered across ground
+                And all the lifeless dolls laying down
+                But this peace is unsettling
+                For what can we mere people do
+                To win a war not against man
+                But rather a daughter born from the atmosphere
+                </pre>
+            </details>
+            <h2>Submissions</h2>
+            <p>Please fill out the form below if you would like your poem to go on our website. All fields are required.</p>
+            <form id="myForm" action="../actions/submission.html" method="post">
+                <fieldset class="fieldset-autowidth">
+                    <legend>Poem Submission Form</legend>
+                    <label>First name:<input type="text" name="first" id="first" required="required" accesskey="F" tabindex="0"><span id="0"></span></label>
+                    <label>Last name:<input type="text" name="last" id="last" required="required" accesskey="L"><span id="1"></span></label>
+                    <label><span class="et">Email:</span><input type="email" name="email" id="email" required="required" accesskey="E" tabindex="1" placeholder="xxxxx@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"><span id="2"></span></label>
+                    <label><span class="ph">Phone:</span><input type="tel" name="phone" id="phone" required="required" accesskey="P" tabindex="2" placeholder="xxx-xxx-xxx" pattern="\d{3}[\-]\d{3}[\-]\d{4}"><span id="3"></span></label>
+                    <label>Poem Title:<input type="text" name="title" id="title" required="required" accesskey="T" tabindex="3"><span id="4"></span></label>
+                    <label>Poem Text:<input type="file" name="File" id="File" required="required" accesskey="R" tabindex="4"></label><span id="5"></span><br>
+                    <input type="submit" value="submit" id="submit">
+                    <input type="reset" value="Reset" id="reset"><br>
+                    <span id="6"></span>
+                    <span id="7"></span>
+                </fieldset>
+            </form>
+        </main>
+        <footer>
+            <a href="../home/home.html">Home</a>|
+            <a href="../book/book.html">Books</a>|
+            <a href="../fiction/fiction.html">Fiction</a>|
+            <a href="../nonfiction/nonFiction.html">Non-Fiction</a>|
+            <a href="../sundry/sundry.html">Sundry</a>|
+            <a href="../about/about.html">About</a>|
+            <a href="../contact/contact.html">Contact</a>|<br>
+            <a href="../center/center.html">Center</a>|
+            <a href="../tutor/tutor.html">Tutoring</a>|
+            <a href="../writing/writing.html">Writing Studio</a>|
+            <a href="../event/event.html">Event</a>|
+            <a href="../creative/creative.html">Creations</a>|
+            <a href="../poetry/poetry.html">Poetry</a>|
+            <a href="../prose/prose.html">Prose</a>|
+            <a href="../membership/membership.html">Membership</a>|<br>
+            <a href="mailto:barronlewis.vistan-lucas@laverne.edu">barronlewis.vistan-lucas@laverne.edu</a>
+            <br>Best Viewed in Mozilla Firefox Version 66.0.3
+            &nbsp;Last Modified:<span id="lastModified"></span>
+        </footer>
+    </div>
+</body>
+</html>

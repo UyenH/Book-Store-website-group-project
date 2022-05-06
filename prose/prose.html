@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Citrion Books, Citrion Bookstore, Learning center, bookstore online, writing studio, sundry ">
+    <meta name="description" content="Online Bookstore and Tutoring Center">
+    <link rel="stylesheet" href="../JSFinal.css">
+    <title>Citrion - Books</title>
+    <script src="../JSScript.js"></script>
+    <style>
+        .et {
+            padding-right: 34px;
+        }
+
+        .ph {
+            padding-right: 29px;
+        }
+
+        .tp {
+            padding-right: 37px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Demonstrating the submit and reset events.
+        var helpArray = ["Enter your first name",
+            "Enter your last name",
+            "Enter your e-mail",
+            "Enter your phone number ###-###-####",
+            "Enter title of your story",
+            "Enter file with text of story",
+            "This button submits the form to the server-side script",
+            "This button clears the form", ""];
+        var helpTextDiv;
+        var Animation;
+        var doAnimation = false;
+        var speed = 0.00;
+        var count = 5;
+        var step = 15;
+        var step2 = 0.05;
+        var currentPoem;
+        // initialize helpTextDiv and register event handlers
+        function init() {
+            helpTextDiv = document.getElementById("helpText");
+            // register listeners
+            registerListeners(document.getElementById("first"), 0);
+            registerListeners(document.getElementById("last"), 1);
+            registerListeners(document.getElementById("email"), 2);
+            registerListeners(document.getElementById("phone"), 3);
+            registerListeners(document.getElementById("title"), 4);
+            registerListeners(document.getElementById("File"), 5);
+            registerListeners(document.getElementById("submit"), 6);
+            registerListeners(document.getElementById("reset"), 7);
+            document.getElementById("detail1").addEventListener("click", function () { closeImage("poem1"); });
+            document.getElementById("detail2").addEventListener("click", function () { closeImage("poem2"); });
+            document.getElementById("detail3").addEventListener("click", function () { closeImage("poem3"); });
+            var myForm = document.getElementById("myForm");
+            myForm.addEventListener( "submit", function() { return confirm( "Are you sure you want to submit?" ); }, false);
+            myForm.addEventListener( "reset", function(){ return confirm( "Are you sure you want to reset?" );}, false);
+        }
+        function registerListeners(object, messageNumber) {// 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 5)
+                //object.innerHTML = helpArray[ messageNumber ];
+                object.addEventListener("focus", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+            else
+                object.addEventListener("mouseover", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+
+            // 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 5 )
+                object.addEventListener("blur",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[8]; }, false);
+            else
+                object.addEventListener("mouseout",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[8]; }, false);
+        }
+        function closeImage(poem) {
+                currentPoem = document.getElementById(poem);
+                currentPoem.setAttribute("height", "0px");
+                currentPoem.setAttribute("style", "opacity: 0.0;");
+                doAnimation = true;
+                Animation = window.setInterval("run("+poem+")", 10);
+        }
+        function run() {
+            if (doAnimation) {
+                currentPoem.setAttribute("height", count);
+                currentPoem.setAttribute("style", "opacity: " + speed + ";");
+                count += step;
+                speed += step2;
+            }
+            else {
+                window.clearInterval(Animation);
+                Animation = null;
+                speed = 0.1;
+                count = 10;
+            }
+            if (currentPoem.getAttribute("height") > 386)
+                doAnimation = false;
+        }
+        window.addEventListener("load", init, false);
+    </script>
+    <header>
+        <a href="../home/home.html"><img src="../sharedImages/bookLogo.png" id="Logo" alt="logo" height="80" width="100"></a>
+        Citrion Books &amp; Learning Center
+    </header>
+    <div id="wrapper">
+        <span id="colorPicker">Change Background Color Here</span><p id="Times"></p>
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../book/book.html" class="dropbtn">Books</a>
+                    <div class="dropdown-content">
+                        <a href="../fiction/fiction.html">Fiction</a>
+                        <a href="../nonfiction/nonFiction.html">Non-Fiction</a>
+                        <a href="../comic/comic.html">Comics</a>
+                    </div>
+                </li>
+                <li><a href="../sundry/sundry.html">Sundry</a></li>
+                <li><a href="../about/about.html">About</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <a href="../center/center.html" class="dropbtn">Center</a>
+                    <div class="dropdown-content">
+                        <a href="../tutor/tutor.html">Tutoring</a>
+                        <a href="../writing/writing.html">Studio</a>
+                    </div>
+                </li>
+                <li><a href="../event/event.html">Events</a></li>
+                <li class="dropdown">
+                    <a href="../creative/creative.html" class="dropbtn">Creations</a>
+                    <div class="dropdown-content">
+                        <a href="../poetry/poetry.html">Poetry</a>
+                        <a href="../prose/prose.html">Prose</a>
+                    </div>
+                </li>
+                <li><a href="../membership/membership.html">Membership</a></li>
+            </ul>
+        </nav>
+        <main id="mainTag">
+            <a href="../home/home.html">Home>></a><a href="../creative/creative.html" class="dropbtn">Creations>></a><a href="../prose/prose.html">Prose</a>
+            <h1>Prose Collection</h1>
+            <p>
+                Below is our collection of short stories written by our patrons and customers.
+                Feel free to read them to gain inspiration for your own stories.
+            </p>
+            <details id="detail1">
+                <img src="whitebox.png" alt="whitebox" width="590" height="386" id="poem1">
+                <summary>The White Box</summary>
+                <p>
+                    A high-pitched beeping pounds into my head. My eyes slowly crack open as the beeping continues to ring into my left ear. Bright light sweeps over my eyes, and a white blur lies in front of my vision. Eventually the blur comes to focus, and a white wall forms in front of me. I look over my left shoulder and I a mechanical monolith right beside. The machine has a menagerie of switches and buttons all over it, and it has a large screen on its center.
+                    Thin cables extend the side of the metal block and their ends are attached to my left arm and chest with suction cup like a tentacle. The screen seems to be measuring my vitals: heart rate, breathing, blood pressure and several other measurements. I look at my body and see that I am dressed in a hospital gown. Then I hear a loud slam in my right ear, and on my right side a person in a white scrub walks into the room pushing a cart of medicine and syringes on top. Beside the door is a large black mirror that stretches to the end of the wall. In my reflection I see that a ring-shaped scar wraps around the upper half of my head, and my hair are just stubbles on my scalp. The door locks behind him as he walks in.
+                    "Where the hell am I?" The stranger ignores me. He wears a stoic persona on his coffee brown skin. I notice he has a hook nose and big red lips, and my vision comes back to my memory. "You were the one standing over me while I dosed away to sleep." I snapped, "What are you some kind of ghost nurse?" He still answers me with silence, and the only sound comes from the beeping machine. I try to get off the bed, but my arms and legs just shake in place. I scan my body, and I see that I�ve been restrained. A transparent ring attached to the bed wraps around my biceps and fore arms of both my arms. The same rings wrap around my ankles, and a larger set of rings restrain my thighs. I keep struggling as my veins pop out of my muscles. "You crazy douchebag! You have no right to have me locked up here!"
+                    "We have every right to have you here," A disembodied voice echoes in the white box of a room. The voice is mechanical with a trace of static at the end of each spoken syllable.  "You think scrambling your voice makes you look tough? Why don�t you crawl out of your black mirror and face me like a man," I reply.  "Do not strain yourself. We barely managed to save you after your failed experiment." My mouth gapes open in shock. "How do you know about my machine?" I say calmly. "We will be the ones asking the questions," the voice replies. The nurse picks up a syringe from the cart filled with a scarlet solution. He grasps my left arm and injects the syringe into a vein on my wrist. I feel a slight sting which travels up my arm and into my head. "What did you put into me?"
+                    "We have some questions about your experiment from last night. Not everyone can construct a machine capable of breaching the flow of time. You are well aware that experimental time travel is a severe crime in our nation. How did you manage to get all the parts necessary for this machine?" My face remains quiet as the head of s statue. A moment of silence past, and the voice says, "Refusing to speak I see?" As soon as the question was spoken, I suddenly feel an intense burning in my body and gas starts to fume from my pores. Almost like lava suddenly filled my veins. I scream and grunt in agony while my restrained limbs shake until the burning stopped. "What � what the hell happened to my body? It felt like my blood was boiling inside of me?"
+                    "It is the serum that we injected inside your blood stream. The red liquid was filled with nanites that have the ability to increase the acidity of any solution it enters. If you continue to ignore my questions, I will melt your body from the inside out," the voice said coldly. "Now tell me where did you get the materials for your time machine?"
+                    "I was a researcher for Quantico. I led a team of scientist that experimented with photon energy. Most of the parts came from the central lab from the abandoned Quantico warehouse in my home town and the rest from the silicon graveyard." I begrudgingly share. "Quantico is one of the most dominant aeronautics and physics research organizations in the world. As I recall the building was shut down due to a horrid failed experiment performed by a fanatical scientist. That was about 35 years ago, but I am sure that you are well aware of the incident Dr. Cardinal?" At the sound of my name a cold fear troubles down my spine and sends pain throughout my back. I remain silent. "What drove you to go to such extremes to perform this insane experiment? Is it a quest for knowledge, an act of revenge against Quantico, or perhaps something much more personal?" Suddenly the black mirror flashes with the photo of my parents. I snarl and shout, "How dare you steal that with you piece of shit. I will kill you if you don�t hand that back."
+                    "Seems I stroke a nerve. To the public this photo depicts two mad scientist that killed their colleagues with their ambitious experiments. But I know how much this photo means to you. To think that the daughter of such brilliant physicist would become ludicrous criminal."
+                    "Why did you save me? What do you want with me and my machine?", I say in an exhausted voice. "I am here to help you fulfill your dream," Once the voice finished its statement, the latches on my limbs open up, and the door on the wall swings open. The nurse stands silently in the corner of the white room and I stare at the dark hall of beyond the door.
+                </p>
+            </details>
+            <details id="detail2">
+                <img src="clone.png" alt="clone" width="514" height="386" id="poem2">
+                <summary>1000 Ways to Die</summary>
+                <p>
+                    My head thumps like a hectic metronome from all the blood rushing to it. The wind pushes against my face, which causes my mouth to open and drool. As I fall, I look down and see miles of dessert blanketing the ground. When I meet the ground, everything turns black, and I wake up in my bed. �Looks like the test is successful. Its time for me to head to the next experiment,� I think to myself. I head out of the mansion and into the garage. I get into my car, and race off to the next test. I get to the demolition arena. Once I get into the center of the arena a flurry of trucks surrounds me. The trucks ram into all the sides of my car, and my body gets thrown with every impact. One last ram into the driver�s side shatters the glass beside me and knocks the vision out of my eyes. Now I wake up in a dimly lit room with a sterile atmosphere. Then I hear my voice say, �Welcome #34. It seems that you are stable.� I sit up and see myself dressed in a lab coat. �Hello #1,� I say.  I look behind him to see the rest me lined in rows of glass containers. I�ve done it, I have found the secret to immortality.
+                </p>
+            </details>
+            <details id="detail3">
+                <img src="junkyard.png" alt="junkyard" width="514" height="386" id="poem3">
+                <summary>Junk of Time</summary>
+                <p>
+                    I think this will be my last night in the silicon graveyard. Mountains of ancient machines fill up the area, which lies in the urban core of the city. Most of the machines  come from the 21st century, so it�s pretty outdated. Dusk settled on this summer night, and the only light I see comes from the cracked screens of disposed computers. My project is almost done, and the last part I need is buried within these heaps of scrap. As I scavenged through the metal scraps as the city dresses itself in neon and noise.  Finally, I see a faint light blue light illuminate the inside of a scrap pile. Like a moth I am mesmerized by the lurid bulb. I dive into the pile and toss machine parts all over the air.
+                    �Finally found you little bugger,� I say with the photon chip in my hands.  I walk out the junk yard and ride off on my motorcycle. I drive to the edge of the city until the gray wood comes into view. I park my cycle next to the sign. �St. Rita�s home for abandoned children,� it reads. The rotting wood creeks as my feet step onto the floor. The rooms in the first floor are filled with dusty furniture and antiques. The second floor is lined with rooms filled only with lonely beds, but one exception lies at the end of the hall. The exception is my room where I have lived since, I could speak. I come inside and I sit down at my desk and grab a burnt and crumpled photo. It is a photo of my parents before the explosion, and both of their faces have been burnt of the photo. Their faces are the enigma that alluded me all my life, but that changes tonight. In the center of the room is a pristine steel chair with a helmet attached on top of it like an electric chair. On the left arm of the chair is a silver button. I take the photon chip and place it inside the. An azure aura surrounds the chair and I stand in awe of my creation. My room is illuminated by the ghostly light.
+                    I take a seat on the steel throne and latch on the helmet to my head. My head starts to ache from all the blood rushing to my skull. �I can�t do this! I can�t risk my life on an insane experiment based on a hopeless dream!� But my hands don�t listen. My left fist clench over the crumpled photo and slam on the silver button. Lightning surges through my brains, and I feel the photo burning to ashes in my hand. The light blue light over powers my eyes then I see nothing but white. My eyes start to refocus and I see myself surrounded by white walls and a dark figure staring straight at me. It has a puffy ruby mouth and large hook nose. Then I fall sleep.
+                </p>
+            </details>
+            <h2>Submissions</h2>
+            <p>Please fill out the form below if you would like your story to go on our website. All fields are required.</p>
+            <form id="myForm" action="../actions/submission.html" method="post">
+                <fieldset class="fieldset-autowidth">
+                    <legend>Prose Submission Form</legend>
+                    <label>First name:<input type="text" name="first" id="first" required="required" accesskey="F" tabindex="0"><span id="0"></span></label>
+                    <label>Last name:<input type="text" name="last" id="last" required="required" accesskey="L"><span id="1"></span></label>
+                    <label><span class="et">Email:</span><input type="email" name="email" id="email" required="required" accesskey="E" tabindex="1" placeholder="xxxxx@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"><span id="2"></span></label>
+                    <label><span class="ph">Phone:</span><input type="tel" name="phone" id="phone" required="required" accesskey="P" tabindex="2" placeholder="xxx-xxx-xxx" pattern="\d{3}[\-]\d{3}[\-]\d{4}"><span id="3"></span></label>
+                    <label>Story Title:&nbsp;<input type="text" name="title" id="title" required="required" accesskey="T" tabindex="3"><span id="4"></span></label>
+                    <label>Text File:&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" name="File" id="File" required="required" accesskey="R" tabindex="4"></label><span id="5"></span><br>
+                    <input type="submit" value="submit" id="submit">
+                    <input type="reset" value="Reset" id="reset"><br>
+                    <span id="6"></span>
+                    <span id="7"></span>
+                </fieldset>
+            </form>
+        </main>
+        <footer>
+            <a href="../home/home.html">Home</a>|
+            <a href="../book/book.html">Books</a>|
+            <a href="../fiction/fiction.html">Fiction</a>|
+            <a href="../nonfiction/nonFiction.html">Non-Fiction</a>|
+            <a href="../sundry/sundry.html">Sundry</a>|
+            <a href="../about/about.html">About</a>|
+            <a href="../contact/contact.html">Contact</a>|<br>
+            <a href="../center/center.html">Center</a>|
+            <a href="../tutor/tutor.html">Tutoring</a>|
+            <a href="../writing/writing.html">Writing Studio</a>|
+            <a href="../event/event.html">Event</a>|
+            <a href="../creative/creative.html">Creations</a>|
+            <a href="../poetry/poetry.html">Poetry</a>|
+            <a href="../prose/prose.html">Prose</a>|
+            <a href="../membership/membership.html">Membership</a>|<br>
+            <a href="mailto:barronlewis.vistan-lucas@laverne.edu">barronlewis.vistan-lucas@laverne.edu</a>
+            <br>Best Viewed in Mozilla Firefox Version 66.0.3
+            &nbsp;Last Modified:<span id="lastModified"></span>
+        </footer>
+    </div>
+</body>
+</html>

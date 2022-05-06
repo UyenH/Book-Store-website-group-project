@@ -1,0 +1,330 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Citrion Books, Citrion Bookstore, Learning center, bookstore online, writing studio, sundry ">
+    <meta name="description" content="Online Bookstore and Tutoring Center">
+    <link rel="stylesheet" href="../JSFinal.css">
+    <title>Nonfiction Books</title>
+    <style>
+        .et {
+            padding-right: 34px;
+        }
+
+        .ph {
+            padding-right: 29px;
+        }
+
+        .tp {
+            padding-right: 46px;
+        }
+
+        .l3 {
+            padding-right: 49px;
+        }
+        main {
+            text-align: center;
+        }
+
+        figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        #Library {
+            width: 100%;
+            margin: 0 auto;
+            display: block;
+            text-align: center;
+        }
+
+        figure {
+            display: inline-block;
+            margin: 0 15px;
+            width: 20%;
+            height: auto;
+        }
+
+            figure:hover figcaption {
+                height: unset;
+            }
+
+        figcaption {
+            height: unset;
+            transition: none;
+        }
+
+        @media screen and (max-width: 1082px) and (min-width: 801px) {
+            figure {
+                width: 30%;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            figure {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var cooking = ["chief.png", "fine.png", "gaby.png", "harvest.png", "knives.png", "pretty.png", "school.png", "slow.png", "ultimate.png", "vegan.png"]
+        var cookingTitle = ["The Complte Cookbook, Young Chef", "Fine Cooking", "What's Gaby Cooking", "Half Baked Havervest Cookbook", "The Forks Over Knives", "Pretty Simple Cooking",
+            "School Year Survival Cookbook", "PALEO Slow Cooking", "Tasty Ultimate", "Easy Vegan Cookbook"]
+        var biography = ["adele.png", "anne.png", "beyonce.png", "obama.png", "clinton.png", "einstein.png", "jobs.png", "lincoln.png", "madonna.png", "malala.png"]
+        var biographyTitle = ["Adele the Biography", "Anne Frank", "Beyonce Knowles", "Becoming Michelle Obama", "A Women in Charge", "Einstein", "Steve Jobs - The Man Who Thought Different",
+            "Abraham Lincoln", "Madonna", "I am Malala"]
+        var children = ["2016.png", "bug.png", "butterfly.png", "dog.png", "facts.png", "human.png", "shark.png", "solar.png", "space.png", "volcano.png"]
+        var childrenTitle = ["Almanac 2016", "Big Book of Bugs", "A Butterfly's life", "Everything Dog", "5000 Awsome Facts", "Human Body", "Everything Sharks",
+            "100 Facts Solar System", "A Cool Kid's Field Guide to Space", "Volcanoes"]
+        var computer = ["ap.png", "applicants.png", "education.png", "introduction.png", "java.png", "java1.png", "multimedia.png", "principles.png", "programming.png",
+            "system.png"]
+        var computerTitle = ["AP Computer Science A Exam", "Compter Applicants", "Computer Education Book 2", "Introduction to Computer Systems", "Think Java",
+            "Java 1 Basic Syntax and Senmantics", "Multimedia Programming", "Computer Science Principles", "Cambridge IGCSE Computer Science Programming Book",
+            "Computer System Architecture"]
+        var craft = ["awesome.png", "bigBook.png", "dino.png", "first book.png", "lowMess.png", "moomin.png", "mother.png", "mybook.png","paper.png","plastic.png"]
+        var craftTitle = ["Awsome Edible Kids Crafts", "Big Book of Holiday Paper Crafts", "Paper Crafts Dinosaurs", "My First Craft Book", "Low-Mess Crafts For Kids",
+        "The Moomin Craft Book", "Mother's Day Crafts for kids", "My Craft Book", "Paper Craft", "Fun with Plastic Canvas"]
+        const SIZE = cooking.length + biography.length + children.length + computer.length+craft.length;
+        var fiction = new Array(SIZE);
+        function init() {
+            var result = document.getElementById("result");
+            printing();
+            document.getElementById("allfiction").setAttribute("selected","selected");
+            document.getElementById("genreSelect").addEventListener("change", getBook, false)
+        }
+        function printing() {
+            var totalLength;
+            result.innerHTML = "All Books"
+            for (var i = 0; i < fiction.length; i++) {
+                fiction[i] = new  Array("Title", "Image", "Genre");
+            }
+            for (var i = 0; i < cooking.length; i++) {
+                fiction[i][0] = cookingTitle[i];
+                fiction[i][1] = cooking[i];
+                fiction[i][2] = "cooking";
+            }
+            totalLength = parseInt(cooking.length);
+            for (var i = 0; i < biography.length; i++) {
+                fiction[i + totalLength][0] = biographyTitle[i];
+                fiction[i + totalLength][1] = biography[i];
+                fiction[i + totalLength][2] = "biography";
+            }
+            totalLength += parseInt(biography.length);
+            for (var i = 0; i < children.length; i++) {
+                fiction[i + totalLength][0] = childrenTitle[i];
+                fiction[i + totalLength][1] = children[i];
+                fiction[i + totalLength][2] = "children";
+            }
+            totalLength += parseInt(children.length);
+            for (var i = 0; i < computer.length; i++) {
+                fiction[i + totalLength][0] = computerTitle[i];
+                fiction[i + totalLength][1] = computer[i];
+                fiction[i + totalLength][2] = "computer";
+            }
+            totalLength += parseInt(computer.length);
+            for (var i = 0; i < computer.length; i++) {
+                fiction[i + totalLength][0] = craftTitle[i];
+                fiction[i + totalLength][1] = craft[i];
+                fiction[i + totalLength][2] = "craft";
+            }
+            for (var i = 0; i < SIZE; i++) {
+                var Figure = document.createElement("FIGURE");
+                var picture = document.createElement("IMG");
+                var Captions = document.createElement("FIGCAPTION");
+                Figure.setAttribute("class", "item");
+                picture.setAttribute("class", "item");
+                Captions.setAttribute("class", "item");
+                Captions.innerHTML = fiction[i][0];
+                picture.setAttribute("src", fiction[i][2] + "/" + fiction[i][1]);
+                picture.setAttribute("alt", Captions);
+                Figure.appendChild(picture);
+                Figure.appendChild(Captions);
+                document.getElementById("Library").appendChild(Figure);
+            }
+        }
+        function getBook() {
+            document.getElementById("Library").innerHTML = "";
+            if (document.getElementById("allfiction").selected) {
+                location.reload();
+            }
+            else {
+                var selection = document.getElementById("genreSelect").value;
+                result.innerHTML = selection + " Books";
+                for (var i = 0; i <= SIZE; i++) {
+
+                    if (selection == fiction[i][2]) {
+                        var Figure = document.createElement("FIGURE");
+                        var picture = document.createElement("IMG");
+                        var Captions = document.createElement("FIGCAPTION");
+                        picture.setAttribute("class", "item");
+                        Captions.innerHTML = fiction[i][0];
+                        picture.setAttribute("src", selection + "/" + fiction[i][1]);
+                        picture.setAttribute("alt", Captions);
+                        Figure.appendChild(picture);
+                        Figure.appendChild(Captions);
+                        document.getElementById("Library").appendChild(Figure);
+                    }
+                }
+            }
+        }
+        function showItem(e) {
+            if (e.target.getAttribute("class") == "item") {
+                document.getElementById("mainTag").innerHTML = '<form id="myForm" action="../actions/submission.html" method="post">' +
+                '<fieldset class="fieldset-autowidth">' +
+                    '<legend>Book Order Form<br>*Required Fields</legend>' +
+                    '<label>*First name:<input type="text" name="first" id="first" required="required" accesskey="F" tabindex="0"><span id="0"></span></label>' +
+                    '<label>*Last name:<input type="text" name="last" id="last" required="required" accesskey="L"><span id="1"></span></label>' +
+                    '<label><span class="et">*Email:</span><input type="email" name="email" id="email" required="required" accesskey="E" tabindex="1" placeholder="xxxxx@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"><span id="2"></span></label>' +
+                    '<label><span class="ph">*Phone:</span><input type="tel" name="phone" id="phone" required="required" accesskey="P" tabindex="2" placeholder="xxx-xxx-xxx" pattern="\\d{3}[\\-]\\d{3}[\\-]\\d{4}"><span id="3"></span></label>' +
+                    '<label>*Address:<input type="text" name="address" id="address" required="required" accesskey="A"><span id="4"></span></label>' +
+                    '<label>*City:<input type="text" name="city" id="city" required="required" accesskey="C"><span id="5"></span></label>' +
+                    '<label>*State:<input type="text" name="state" id="state" required="required" accesskey="S"><span id="6"></span></label>' +
+                    '<label>' +
+                        '<span class="tp">Topic:</span><select id="selection" name="selection">' +
+                            '<option id="feedback" value="feedback">Feedback </option>' +
+                            '<option id="deliver" value="bookDeliver">Book delivery </option>' +
+                            '<option id="rent" value="rent">Renting Book</option>' +
+                            '<option id="return" value="return">Return Book</option>' +
+                            '<option id="other" value="other">Other</option>' +
+                        '</select><span id="7"></span>' +
+                    '</label>' +
+                    '<label>Username:&nbsp;<input type="text" name="user" id="user" accesskey="U" tabindex="8"><span id="8"></span></label>' +
+                    '<label><span class="l3">Pin:&nbsp;</span><input type="text" name="pin" id="pin" accesskey="I" tabindex="6" placeholder="####" pattern="[0-9]{4}"><span id="9"></span></label>' +
+                    '<input type="submit" value="submit" id="submit">' +
+                    '<input type="reset" value="Reset" id="reset"><br>' +
+                    '<span id="10"></span>' +
+                    '<span id="11"></span>' +
+                '</fieldset>' +
+            '</form>';
+                start();
+                document.getElementById("mainTag").setAttribute("style", "text-align: unset;");
+            }
+        }
+        function start() {
+            helpTextDiv = document.getElementById("helpText");
+
+            // register listeners
+            registerListeners(document.getElementById("first"), 0);
+            registerListeners(document.getElementById("last"), 1);
+            registerListeners(document.getElementById("email"), 2);
+            registerListeners(document.getElementById("phone"), 3);
+            registerListeners(document.getElementById("address"), 4);
+            registerListeners(document.getElementById("city"), 5);
+            registerListeners(document.getElementById("state"), 6);
+            registerListeners(document.getElementById("selection"), 7);
+            registerListeners(document.getElementById("user"), 8);
+            registerListeners(document.getElementById("pin"), 9);
+            registerListeners(document.getElementById("submit"), 10);
+            registerListeners(document.getElementById("reset"), 11);
+
+            var myForm = document.getElementById("myForm");
+            myForm.addEventListener("submit", function () { return confirm("Are you sure you want to submit?"); }, false);
+            myForm.addEventListener("reset", function () { return confirm("Are you sure you want to reset?"); }, false);
+
+        }
+        function registerListeners(object, messageNumber) {// 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 9)
+                //object.innerHTML = helpArray[ messageNumber ];
+                object.addEventListener("focus", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+            else
+                object.addEventListener("mouseover", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+
+            // 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 9)
+                object.addEventListener("blur",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[12]; }, false);
+            else
+                object.addEventListener("mouseout",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[12]; }, false);
+        }
+        document.addEventListener("click", showItem, false);
+        window.addEventListener("load", init, false);
+    </script>
+    <header>
+        <a href="../home/home.html"><img src="../sharedImages/bookLogo.png" id="Logo" alt="logo" height="80" width="100"></a>
+        Citrion Books &amp; Learning Center
+    </header>
+    <div id="wrapper">
+        <span id="colorPicker">Change Background Color Here</span><p id="Times"></p>
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../book/book.html" class="dropbtn">Books</a>
+                    <div class="dropdown-content">
+                        <a href="../fiction/fiction.html">Fiction</a>
+                        <a href="../nonfiction/nonFiction.html">Non-Fiction</a>
+                        <a href="../comic/comic.html">Comics</a>
+                    </div>
+                </li>
+                <li><a href="../sundry/sundry.html">Sundry</a></li>
+                <li><a href="../about/about.html">About</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <a href="../center/center.html" class="dropbtn">Center</a>
+                    <div class="dropdown-content">
+                        <a href="../tutor/tutor.html">Tutoring</a>
+                        <a href="../writing/writing.html">Studio</a>
+                    </div>
+                </li>
+                <li><a href="../event/event.html">Events</a></li>
+                <li class="dropdown">
+                    <a href="../creative/creative.html" class="dropbtn">Creations</a>
+                    <div class="dropdown-content">
+                        <a href="../poetry/poetry.html">Poetry</a>
+                        <a href="../prose/prose.html">Prose</a>
+                    </div>
+                </li>
+                <li><a href="../membership/membership.html">Membership</a></li>
+            </ul>
+        </nav>
+        <main id="mainTag">
+            <h3 id="myDate"></h3>
+            <img src="../nonfiction.png" alt="nonfiction image" id="hero" height="100" width="300">
+            <a href="../home/home.html">Home>></a><a href="../book/book.html">Books>></a><a href="../nonfiction/nonFiction.html">Non-Fiction</a>
+            <h1>Nonfiction Books</h1>
+            <h2>Choose a gener you want</h2>
+            <p>
+                <label>Genre: </label>
+                <select id="genreSelect">
+                    <option value="allfiction" id="allfiction">All Books</option>
+                    <option value="cooking" id="cooking">Cooking</option>
+                    <option value="biography" id="biography">Biography</option>
+                    <option value="children" id="children">Children nonfiction Books</option>
+                    <option value="computer" id="computer">Computer</option>
+                    <option value="craft" id="craft">Crafts</option>
+                </select>
+            </p>
+
+            <h3 id="result">All Books</h3>
+            <div id="Library"></div>
+        </main>
+        <footer>
+            <a href="../home/home.html">Home</a>|
+            <a href="../book/book.html">Books</a>|
+            <a href="../fiction/fiction.html">Fiction</a>|
+            <a href="../nonfiction/nonFiction.html">Non-Fiction</a>|
+            <a href="../sundry/sundry.html">Sundry</a>|
+            <a href="../about/about.html">About</a>|
+            <a href="../contact/contact.html">Contact</a>|<br>
+            <a href="../center/center.html">Center</a>|
+            <a href="../tutor/tutor.html">Tutoring</a>|
+            <a href="../writing/writing.html">Writing Studio</a>|
+            <a href="../event/event.html">Event</a>|
+            <a href="../creative/creative.html">Creations</a>|
+            <a href="../poetry/poetry.html">Poetry</a>|
+            <a href="../prose/prose.html">Prose</a>|
+            <a href="../membership/membership.html">Membership</a>|<br>
+            <a href="mailto:barronlewis.vistan-lucas@laverne.edu">barronlewis.vistan-lucas@laverne.edu</a>
+            <br>Best Viewed in Mozilla Firefox Version 66.0.3
+            &nbsp;Last Modified:<span id="lastModified"></span>
+        </footer>
+    </div>
+</body>
+</html>
