@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../JSFinal.css">
+    <title>Contact Us</title>
+    <script src="../JSScript.js"></script>
+    <style>
+        .et {
+            padding-right: 34px;
+        }
+
+        .ph {
+            padding-right: 29px;
+        }
+
+        .tp {
+            padding-right: 46px;
+        }
+
+        .l3 {
+            padding-right: 49px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Demonstrating the submit and reset events.
+        var helpArray = ["Enter your first name",
+            "Enter your last name",
+            "Enter your e-mail",
+            "Enter your phone number ###-###-####",
+            "Enter your age",
+            "Create a username",
+            "Create a 4-digit pin",
+            "This button submits the form to the server-side script",
+            "This button clears the form", ""];
+        var helpTextDiv;
+
+        // initialize helpTextDiv and register event handlers
+        function init() {
+            helpTextDiv = document.getElementById("helpText");
+
+            // register listeners
+            registerListeners(document.getElementById("first"), 0);
+            registerListeners(document.getElementById("last"), 1);
+            registerListeners(document.getElementById("email"), 2);
+            registerListeners(document.getElementById("phone"), 3);
+            registerListeners(document.getElementById("age"), 4);
+            registerListeners(document.getElementById("user"), 5);
+            registerListeners(document.getElementById("pin"), 6);
+            registerListeners(document.getElementById("submit"), 7);
+            registerListeners(document.getElementById("reset"), 8);
+            var myForm = document.getElementById("myForm");
+            myForm.addEventListener( "submit", function() { return confirm( "Are you sure you want to submit?" ); }, false);
+            myForm.addEventListener( "reset", function(){ return confirm( "Are you sure you want to reset?" );}, false);
+
+        }
+        function registerListeners(object, messageNumber) {// 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 6)
+                //object.innerHTML = helpArray[ messageNumber ];
+                object.addEventListener("focus", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+            else
+                object.addEventListener("mouseover", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+
+            // 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 6 )
+                object.addEventListener("blur",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[9]; }, false);
+            else
+                object.addEventListener("mouseout",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[9]; }, false);
+        }
+        window.addEventListener("load", init, false);
+    </script>
+    <header>
+        <a href="../home/home.html"><img src="../sharedImages/bookLogo.png" id="Logo" alt="logo" height="80" width="100"></a>
+        Citrion Books &amp; Learning Center
+    </header>
+    <div id="wrapper">
+        <span id="colorPicker">Change Background Color Here</span><p id="Times"></p>
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../book/book.html" class="dropbtn">Books</a>
+                    <div class="dropdown-content">
+                        <a href="../fiction/fiction.html">Fiction</a>
+                        <a href="../nonfiction/nonFiction.html">Non-Fiction</a>
+                        <a href="../comic/comic.html">Comics</a>
+                    </div>
+                </li>
+                <li><a href="../sundry/sundry.html">Sundry</a></li>
+                <li><a href="../about/about.html">About</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <a href="../center/center.html" class="dropbtn">Center</a>
+                    <div class="dropdown-content">
+                        <a href="../tutor/tutor.html">Tutoring</a>
+                        <a href="../writing/writing.html">Studio</a>
+                    </div>
+                </li>
+                <li><a href="../event/event.html">Events</a></li>
+                <li class="dropdown">
+                    <a href="../creative/creative.html" class="dropbtn">Creations</a>
+                    <div class="dropdown-content">
+                        <a href="../poetry/poetry.html">Poetry</a>
+                        <a href="../prose/prose.html">Prose</a>
+                    </div>
+                </li>
+                <li><a href="../membership/membership.html">Membership</a></li>
+            </ul>
+        </nav>
+        <main id="mainTag">
+            <h3 id="myDate"></h3>
+            <a href="../home/home.html">Home>></a><a href="../membership/membership.html">Membership</a>
+            <h1>Membership Form</h1>
+            <p>Sign Up for our membership program to gain discounts and rewards from our store.</p>
+            <form id="myForm" action="../actions/submission.html" method="post">
+                <fieldset class="fieldset-autowidth">
+                    <legend>Membership Form<br>*Required Fields</legend>
+                    <label>*First name:<input type="text" name="first" id="first" required="required" accesskey="F" tabindex="0"><span id="0"></span></label>
+                    <label>*Last name:<input type="text" name="last" id="last" required="required" accesskey="L" tabindex="1"><span id="1"></span></label>
+                    <label><span class="et">*Email:</span><input type="email" name="email" id="email" required="required" accesskey="E" tabindex="2" placeholder="xxxxx@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"><span id="2"></span></label>
+                    <label><span class="ph">*Phone:</span><input type="tel" name="phone" id="phone" required="required" accesskey="P" tabindex="3" placeholder="xxx-xxx-xxx" pattern="\d{3}[\-]\d{3}[\-]\d{4}"><span id="3"></span></label>
+                    <label><span class="l3">*Age:</span><input type="text" name="age" id="age" required="required" accesskey="G" tabindex="4" pattern="[1-9]{1,3}"><span id="4"></span></label>
+                    <label>*Username:&nbsp;<input type="text" name="user" id="user" required="required" accesskey="U" tabindex="5"><span id="5"></span></label>
+                    <label><span class="l3">*Pin:&nbsp;</span><input type="text" name="pin" id="pin" required="required" accesskey="I" tabindex="6" placeholder="####" pattern="[0-9]{4}"><span id="6"></span></label>
+                    <input type="submit" value="submit" id="submit">
+                    <input type="reset" value="Reset" id="reset"><br>
+                    <span id="7"></span>
+                    <span id="8"></span>
+                </fieldset>
+            </form>
+        </main>
+        <footer>
+            <a href="../home/home.html">Home</a>|
+            <a href="../book/book.html">Books</a>|
+            <a href="../fiction/fiction.html">Fiction</a>|
+            <a href="../nonfiction/nonFiction.html">Non-Fiction</a>
+            <a href="../sundry/sundry.html">Sundry</a>|
+            <a href="../about/about.html">About</a>|
+            <a href="../contact/contact.html">Contact</a>|<br>
+            <a href="../center/center.html">Center</a>|
+            <a href="../tutor/tutor.html">Tutoring</a>|
+            <a href="../writing/writing.html">Writing Studio</a>|
+            <a href="../event/event.html">Event</a>|
+            <a href="../creative/creative.html">Creations</a>|
+            <a href="../poetry/poetry.html">Poetry</a>|
+            <a href="../prose/prose.html">Prose</a>|
+            <a href="../membership/membership.html">Membership</a>|<br>
+            <a href="mailto:barronlewis.vistan-lucas@laverne.edu">barronlewis.vistan-lucas@laverne.edu</a>
+            <br>Best Viewed in Mozilla Firefox Version 66.0.3
+            &nbsp;Last Modified:<span id="lastModified"></span>
+        </footer>
+    </div>
+</body>
+</html>

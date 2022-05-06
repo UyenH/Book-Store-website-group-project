@@ -1,0 +1,281 @@
+* {box-sizing: border-box;}
+body {
+    background-color: hsla(120, 60%, 70%, 0.3);}
+header {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: darkslategray;
+    padding: 0.9em 0;
+    color: hsl(179, 80%, 60%);
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 3.5em;
+    border: 4px inset silver;
+    border-radius: 3px;
+    text-align: center;
+}
+header img{
+    vertical-align: middle;
+    float: left;
+    padding-left: 0.5em;}
+nav {
+    float: left;
+    background-color: hsla(177, 82%, 40%, 0.8);
+    border: 4px inset silver;
+    border-radius: 3px;
+    font-size: 1.3em;
+    padding-right: 1.4em;
+    width: 17%;
+    font-size: 1.2em;
+}
+nav a{
+    text-decoration: none;
+    -webkit-transition: background-color 2s, color 1s;
+}
+nav ul{
+      width: 100%;
+      padding: 0;
+}
+nav ul li{
+    list-style-type: none;
+    margin-bottom: 0.7em;
+}
+nav div{
+    padding-left: 0.4em;
+    display: block;
+    height: 0;
+    -webkit-transition: height 1.3s;
+    -moz-transition: height 1.3s;
+    -o-transition: height 1.3s;
+    transition: height 1.3s;
+    overflow: hidden
+}
+nav ul li:hover div.dropdown-content {
+    height: 112px;
+}
+nav li {
+    border-radius: 4px;
+    -webkit-transition: background-color 1.5s, color 1s;
+    -moz-transition: background-color 1.5s, color 1s;
+    -o-transition: background-color 1.5s, color 1s;
+    transition: background-color 1.5s, color 1s;
+    border-bottom: 2px solid white;
+    margin-top: 0.6em;
+    }
+.dropdown-content a{
+    margin-top: 10px;
+    display: block;
+}
+nav a:link {
+    color: black;
+}
+nav a:visited{
+    color: dimgrey;
+}
+nav li:hover {
+    background-color: darkslategray;
+}
+nav a:hover {
+    color: hsl(179, 80%, 60%);
+}
+nav .dropdown-content a:hover{
+    background-color: white;
+    border-radius: 5px;
+    color:darkslategray;
+}
+main {
+    width: 80%;
+    float: right;
+    background-color: hsla(177, 82%, 40%, 0.8);
+    border: 4px inset silver;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+article{
+    width: 80%;
+    text-align: justify;
+    text-indent: 20px;
+}
+main p {
+    width: 80%;
+    text-align: justify;
+}
+main a {
+    text-decoration: none;
+}
+main ul{list-style-type: none;}
+main p img {
+            width: 20px;
+            height: 20px;
+            display: inline;
+        }
+h1, h2, h3, p, summary, address, article{margin-left: 20px;}
+figure {
+    background-color: darkslategray;
+    color: hsl(179, 80%, 60%);
+    border: 3px outset silver;
+    border-radius: 6px;
+    width: 60%;
+    height: auto;
+    display: -webkit-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-transition: 1s ease-out;
+    transition: 1s ease-out;
+    -webkit-border-radius: 10px;
+    margin: -15px auto 0px auto;
+    padding: 20px 10px 20px 10px;
+    box-shadow: 10px 10px 10px dimgrey;
+}
+figure img {
+    width: 100%;
+    height: auto;
+}
+figcaption {
+    height: 20px;
+    overflow: hidden;
+    -webkit-transition: height 0.7s;
+    -moz-transition: height 0.7s;
+    -o-transition: height 0.7s;
+    transition: height 0.7s;
+}
+figure:hover{
+    background-color: hsl(179, 80%, 60%);
+    color: darkslategray;
+}
+figure:hover figcaption{
+    height: 40px;
+}
+fieldset {
+    width: 95%;
+    margin: 0 auto;
+    border: 3px solid black;
+    padding-left: 25%;
+}
+label, textarea {
+    display: block;
+    margin: 5px 0;
+}
+footer {
+    clear: both;
+    text-align: center;
+    background-color: darkslategray;
+    border: 4px inset silver;
+    border-radius: 3px;
+    color: hsl(179, 80%, 60%);
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 0.9em;
+    font-style: italic;
+}
+footer a {
+    display: inline-block;
+    text-decoration: none;
+}
+footer a:link {
+    color: hsl(179, 80%, 60%);
+}
+footer a:visited{
+    color: orange;
+}
+footer a:hover{
+    color: slategray;
+}
+pre {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serifsans-serif;
+}
+#wrapper {
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serifsans-serif;
+}
+#mainTextLinks{width: 100%;
+               text-align: center;
+}
+#hero {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    height: auto;
+}
+#colorPicker{float: right;}
+    /* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 1082px) and (min-width: 801px){
+        header, #wrapper {width: 90%;}
+        nav {
+            width: 100%;
+            font-size: 0.9em;
+            padding: 0;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+                margin: 0 auto;
+                width:100%;
+                padding: 0;
+                overflow: hidden;
+                display: inline-block;
+            }
+        nav li {
+                display: inline-block;
+                border: none;
+                margin: 0;
+            }
+
+        nav li a, .dropbtn {
+                    display: inline-block;
+                    color: white;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
+        li.dropdown {display: inline-block;}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            background-color: darkslategrey;
+        }
+    .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;}
+    .dropdown-content a:hover {background-color: #f1f1f1;}
+    .dropdown:hover .dropdown-content {display: block;}
+    main {
+            width: 100%;
+            clear: left;}
+    fieldset {
+        padding-left: 22%;}
+}
+    @media screen and (max-width: 800px) {
+        header {
+            font-size: 1.5em;
+        }
+        nav {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px;}
+        main {
+            width: 100%;
+            clear: both;}
+        #Logo {
+            vertical-align: middle;
+            width: 60px;
+            height: 50px;
+            float: none;}
+        fieldset {
+            width: 95%;
+            padding-left: 15%;}
+    }
+    /* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */

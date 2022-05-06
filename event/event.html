@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Citrion Books, Citrion Bookstore, Learning center, bookstore online, writing studio, sundry ">
+    <meta name="description" content="Online Bookstore and Tutoring Center">
+    <link rel="stylesheet" href="../JSFinal.css">
+    <title>Citrion - Books</title>
+    <script src="../JSScript.js">
+    </script>
+    <style>
+        main{
+            width: 55%;
+            float: left;
+            margin: 0 auto 10px auto;
+             padding-right: 0;
+        }
+        nav{
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        #Calendar {
+            float: right;
+            width: 25%;
+            background-color: hsla(177, 82%, 40%, 0.8);
+            border: 4px inset silver;
+            border-radius: 3px;
+            margin: 0 auto 10px auto;
+            padding: 5px;
+        }
+        main img{
+            width: 90%;
+            height: auto;
+            margin: auto;
+            display: block;
+        }
+        iframe{
+            width: 100%;
+            margin: 0 auto;
+            height: 300px;
+        }
+        @media screen and (max-width: 1082px) and (min-width: 801px) {
+            main{ width: 73%;
+            }
+        }
+        @media screen and (max-width: 800px){
+            main{ width: 100%;
+                  margin: 20px auto;
+                  float: none;
+            }
+            #Calendar{
+                width: 100%;
+                float: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../home/home.html"><img src="../sharedImages/bookLogo.png" id="Logo" alt="logo" height="80" width="100"></a>
+        Citrion Books &amp; Learning Center
+    </header>
+    <div id="wrapper">
+        <span id="colorPicker">Change Background Color Here</span><p id="Times"></p>
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../book/book.html" class="dropbtn">Books</a>
+                    <div class="dropdown-content">
+                        <a href="../fiction/fiction.html">Fiction</a>
+                        <a href="../nonfiction/nonFiction.html">Non-Fiction</a>
+                        <a href="../comic/comic.html">Comics</a>
+                    </div>
+                </li>
+                <li><a href="../sundry/sundry.html">Sundry</a></li>
+                <li><a href="../about/about.html">About</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <a href="../center/center.html" class="dropbtn">Center</a>
+                    <div class="dropdown-content">
+                        <a href="../tutor/tutor.html">Tutoring</a>
+                        <a href="../writing/writing.html">Studio</a>
+                    </div>
+                </li>
+                <li><a href="../event/event.html">Events</a></li>
+                <li class="dropdown">
+                    <a href="../creative/creative.html" class="dropbtn">Creations</a>
+                    <div class="dropdown-content">
+                        <a href="../poetry/poetry.html">Poetry</a>
+                        <a href="../prose/prose.html">Prose</a>
+                    </div>
+                </li>
+                <li><a href="../membership/membership.html">Membership</a></li>
+            </ul>
+        </nav>
+        <main id="mainTag">
+            <a href="../home/home.html">Home>></a><a href="../event/event.html">Events</a>
+            <h1>Stay Informed</h1>
+            <p>We will be posting our events on this page and on the calendar daily. Use it to stay active in the book store.</p>
+            <h2>Details of Events</h2>
+            <h3>Tabletop Party</h3>
+            <details>
+                <summary>Details and Description</summary>
+                <ul>
+                    <li>Date: Wednesday May 22nd</li>
+                    <li>Time: 5:00pm-10:00pm</li>
+                    <li>
+                        Desceiption: Our staff will be hosting a fun and long night of tabletop games. Our store
+                        has a variety of board games, card games, and rpgs to bring people together and geek out.
+                    </li>
+                </ul>
+            </details>
+            <img src="../sharedImages/Tabletop.png" alt="tabletop" width="150" height="80">
+            <h3>Open Poetry Night</h3>
+            <details>
+                <summary>Details and Description</summary>
+                <ul>
+                    <li>Date: Friday May 24th</li>
+                    <li>Time: 7:00pm-10:00pm</li>
+                    <li>
+                        Desceiption: In light of the dark times our country is facing, our store is hosting
+                        a slam poetry night to give people the oppurtunity to express their creativity and
+                        emotions.
+                    </li>
+                </ul>
+            </details>
+            <img src="slam.png" alt="slam poetry" width="150" height="80">
+            <h3>DIY Crafts</h3>
+            <details>
+                <summary>Details</summary>
+                <ul>
+                    <li>Date: Monday May 27nd</li>
+                    <li>Time: 12:00pm-2:00pm</li>
+                    <li>
+                        Desceiption: Learn how to create wonderful crafts to add some color and style to life.
+                        We have gathered some of the greatest DIY masters to teach our customers how to use everyday
+                        items into beautiful decor.
+                    </li>
+                </ul>
+            </details>
+            <img src="crafts.png" alt="crafts" width="150" height="80">
+        </main>
+        <div id="Calendar">
+            <h2>Events Calendar</h2>
+            <iframe src="https://calendar.google.com/calendar/embed?src=laverne.edu_atgcv91po8kioo0lijdgnov3vs%40group.calendar.google.com&ctz=America%2FLos_Angeles"
+                    style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+        <footer>
+            <a href="../home/home.html">Home</a>|
+            <a href="../book/book.html">Books</a>|
+            <a href="../fiction/fiction.html">Fiction</a>|
+            <a href="../nonfiction/nonFiction.html">Non-Fiction</a>|
+            <a href="../sundry/sundry.html">Sundry</a>|
+            <a href="../about/about.html">About</a>|
+            <a href="../contact/contact.html">Contact</a>|<br>
+            <a href="../center/center.html">Center</a>|
+            <a href="../tutor/tutor.html">Tutoring</a>|
+            <a href="../writing/writing.html">Writing Studio</a>|
+            <a href="../event/event.html">Event</a>|
+            <a href="../creative/creative.html">Creations</a>|
+            <a href="../poetry/poetry.html">Poetry</a>|
+            <a href="../prose/prose.html">Prose</a>|
+            <a href="../membership/membership.html">Membership</a>|<br>
+            <a href="mailto:barronlewis.vistan-lucas@laverne.edu">barronlewis.vistan-lucas@laverne.edu</a>
+            <br>Best Viewed in Mozilla Firefox Version 66.0.3
+            &nbsp;Last Modified:<span id="lastModified"></span>
+        </footer>
+    </div>
+</body>
+</html>

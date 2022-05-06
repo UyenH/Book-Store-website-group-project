@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../JSFinal.css">
+    <title>Contact Us</title>
+    <script src="../JSScript.js"></script>
+    <style>
+        main a{margin-left: 10px;}
+        .et {
+            padding-right: 34px;
+        }
+
+        .ph {
+            padding-right: 29px;
+        }
+
+        .tp {
+            padding-right: 46px;
+        }
+        main {
+            width: 55%;
+            float: left;
+            margin: 0 auto 10px auto;
+            padding-right: 0;
+        }
+        nav {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        #Map {
+            float: right;
+            width: 25%;
+            background-color: hsla(177, 82%, 40%, 0.8);
+            border: 4px inset silver;
+            border-radius: 3px;
+            margin: 0 auto 10px auto;
+            padding: 5px;
+        }
+        iframe {
+            width: 100%;
+            margin: 0 auto;
+            height: 300px;
+        }
+
+        @media screen and (max-width: 1082px) and (min-width: 801px) {
+            main {
+                width: 73%;
+            }
+        }
+        @media screen and (max-width: 800px) {
+            main {
+                width: 100%;
+                margin: 20px auto;
+                float: none;
+            }
+
+            #Map {
+                width: 100%;
+                float: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Demonstrating the submit and reset events.
+        var helpArray = ["Enter your first name",
+            "Enter your last name",
+            "Enter your e-mail",
+            "Enter your phone number ###-###-####",
+            "Select one of the topics",
+            "Enter your comment",
+            "This button submits the form to the server-side script",
+            "This button clears the form", ""];
+        var helpTextDiv;
+
+        // initialize helpTextDiv and register event handlers
+        function init() {
+            helpTextDiv = document.getElementById("helpText");
+
+            // register listeners
+            registerListeners(document.getElementById("first"), 0);
+            registerListeners(document.getElementById("last"), 1);
+            registerListeners(document.getElementById("email"), 2);
+            registerListeners(document.getElementById("phone"), 3);
+            registerListeners(document.getElementById("selection"), 4);
+            registerListeners(document.getElementById("comment"), 5);
+            registerListeners(document.getElementById("submit"), 6);
+            registerListeners(document.getElementById("reset"), 7);
+
+            var myForm = document.getElementById("myForm");
+            myForm.addEventListener( "submit", function() { return confirm( "Are you sure you want to submit?" ); }, false);
+            myForm.addEventListener( "reset", function(){ return confirm( "Are you sure you want to reset?" );}, false);
+
+        }
+        function registerListeners(object, messageNumber) {// 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 5)
+                //object.innerHTML = helpArray[ messageNumber ];
+                object.addEventListener("focus", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+            else
+                object.addEventListener("mouseover", function () { document.getElementById(messageNumber).innerHTML = helpArray[messageNumber]; }, false);
+
+            // 4/7/16 JG NEW 3L: register an anonymous function
+            //for the focus event corresponding to span id number
+            if (messageNumber <= 5 )
+                object.addEventListener("blur",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[8]; }, false);
+            else
+                object.addEventListener("mouseout",
+                    function () { document.getElementById(messageNumber).innerHTML = helpArray[8]; }, false);
+        }
+        window.addEventListener("load", init, false);
+    </script>
+    <header>
+        <a href="../home/home.html"><img src="../sharedImages/bookLogo.png" id="Logo" alt="logo" height="80" width="100"></a>
+        Citrion Books &amp; Learning Center
+    </header>
+    <div id="wrapper">
+        <span id="colorPicker">Change Background Color Here</span><p id="Times"></p>
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../book/book.html" class="dropbtn">Books</a>
+                    <div class="dropdown-content">
+                        <a href="../fiction/fiction.html">Fiction</a>
+                        <a href="../nonfiction/nonFiction.html">Non-Fiction</a>
+                        <a href="../comic/comic.html">Comics</a>
+                    </div>
+                </li>
+                <li><a href="../sundry/sundry.html">Sundry</a></li>
+                <li><a href="../about/about.html">About</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <a href="../center/center.html" class="dropbtn">Center</a>
+                    <div class="dropdown-content">
+                        <a href="../tutor/tutor.html">Tutoring</a>
+                        <a href="../writing/writing.html">Studio</a>
+                    </div>
+                </li>
+                <li><a href="../event/event.html">Events</a></li>
+                <li class="dropdown">
+                    <a href="../creative/creative.html" class="dropbtn">Creations</a>
+                    <div class="dropdown-content">
+                        <a href="../poetry/poetry.html">Poetry</a>
+                        <a href="../prose/prose.html">Prose</a>
+                    </div>
+                </li>
+                <li><a href="../membership/membership.html">Membership</a></li>
+            </ul>
+        </nav>
+        <main id="mainTag">
+            <h3 id="myDate"></h3>
+            <a href="../home/home.html">Home>></a><a href="../contact/contact.html">Contact</a>
+            <h1>Contact Us</h1>
+            <p>If you have any emergency issue, please contact us through phone or come directly to the bookstore</p>
+            <p>Phone: 555-555-5555</p>
+            <address>999 main street</address>
+            <address>La Verne, CA</address>
+            <address>91750</address>
+            <p>Social Media Links:</p>
+            <a href="https://www.facebook.com/barron.vistanlucas.52"><img src="facebook.png" alt="facebook" width="45" height="45"></a>
+            <a href="https://twitter.com/bearmanvl"><img src="twitter.png" alt="twitter" width="45" height="45"></a>
+            <a href="https://www.instagram.com/teddybarron17/"><img src="instagram.png" alt="instagram" width="55" height="55"></a>
+            <p>If you want to give us feedback or have any questions that are not ermegencies, please fill in the form below</p>
+            <form id="myForm" action="../actions/submission.html" method="post">
+                <fieldset class="fieldset-autowidth">
+                    <legend>Contact and Feedback<br>*Required Fields</legend>
+                    <label>*First name:<input type="text" name="first" id="first" required="required" accesskey="F" tabindex="0"><span id="0"></span></label>
+                    <label>*Last name:<input type="text" name="last" id="last" required="required" accesskey="L"><span id="1"></span></label>
+                    <label><span class="et">*Email:</span><input type="email" name="email" id="email" required="required" accesskey="E" tabindex="1" placeholder="xxxxx@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"><span id="2"></span></label>
+                    <label><span class="ph">*Phone:</span><input type="tel" name="phone" id="phone" required="required" accesskey="P" tabindex="2" placeholder="xxx-xxx-xxx" pattern="\d{3}[\-]\d{3}[\-]\d{4}"><span id="3"></span></label>
+                    <label>
+                        <span class="tp">Topic:</span><select id="selection" name="selection">
+                            <option id="feedback" value="feedback">Feedback </option>
+                            <option id="deliver" value="bookDeliver">Book delivery </option>
+                            <option id="rent" value="rent">Renting Book</option>
+                            <option id="return" value="return">Return Book</option>
+                            <option id="other" value="other">Other</option>
+                        </select><span id="4"></span>
+                    </label>
+                    <label for="comment">Comment:</label><textarea name="comment" id="comment" rows="5" cols="30"></textarea><span id="5"></span><br>
+                    <input type="submit" value="submit" id="submit">
+                    <input type="reset" value="Reset" id="reset"><br>
+                    <span id="6"></span>
+                    <span id="7"></span>
+                </fieldset>
+            </form>
+        </main>
+        <div id="Map">
+            <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20la&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        </div>
+        <footer>
+            <a href="../home/home.html">Home</a>|
+            <a href="../book/book.html">Books</a>|
+            <a href="../fiction/fiction.html">Fiction</a>|
+            <a href="../nonfiction/nonFiction.html">Non-Fiction</a>|
+            <a href="../sundry/sundry.html">Sundry</a>|
+            <a href="../about/about.html">About</a>|
+            <a href="../contact/contact.html">Contact</a>|<br>
+            <a href="../center/center.html">Center</a>|
+            <a href="../tutor/tutor.html">Tutoring</a>|
+            <a href="../writing/writing.html">Writing Studio</a>|
+            <a href="../event/event.html">Event</a>|
+            <a href="../creative/creative.html">Creations</a>|
+            <a href="../poetry/poetry.html">Poetry</a>|
+            <a href="../prose/prose.html">Prose</a>|
+            <a href="../membership/membership.html">Membership</a>|<br>
+            <a href="mailto:barronlewis.vistan-lucas@laverne.edu">barronlewis.vistan-lucas@laverne.edu</a>
+            <br>Best Viewed in Mozilla Firefox Version 66.0.3
+            &nbsp;Last Modified:<span id="lastModified"></span>
+        </footer>
+    </div>
+</body>
+</html>

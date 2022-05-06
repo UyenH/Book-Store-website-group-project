@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Citrion Books, Citrion Bookstore, Learning center, bookstore online, writing studio, sundry ">
+    <meta name="description" content="Online Bookstore and Tutoring Center">
+    <link rel="stylesheet" href="../JSFinal.css">
+    <title>Final Project</title>
+    <style>
+        #slides {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            width: 100%;
+            height: auto;
+        }
+        #quoteImg{
+            float: left;
+            vertical-align: middle;
+            margin-left:20px;
+        }
+        #nameChange{clear: left;}
+    </style>
+    <script src="../JSScript.js">
+    </script>
+</head>
+<body>
+    <script>
+                var name; //5/8/19 BVistan NEW 2L: String variable to store user name
+                const slideImgs = ["shelves", "../sharedImages/kids", "store"];
+                const speed = 0.01; // determines the speed of the animation
+                var count = 0.9;
+                var seen = true;
+                var slideNumber = 0;
+                var theDate = new Date();
+                var theHour = theDate.getHours();
+                function start() {
+                    window.setInterval("run()", 45);
+                    ID("nameChange").addEventListener("click", changeName, false);
+                    getCookies();
+                    personalMessage();
+                    quotation();
+                }
+                function run() {
+                    var homeImage = document.getElementById("slides");
+                    if (count >= 1) {
+                        seen = true;
+                    }
+                    else if (count <= 0) {
+                        seen = false;
+                        nextSlide(homeImage);
+                    }
+                    if (seen) {
+                        count -= speed;
+                        homeImage.setAttribute("style", "opacity: " + count);
+                    }
+                    else {
+                        count += speed;
+                        homeImage.setAttribute("style", "opacity: " + count);
+                    }
+                }
+                //5/8/19 BVistan NEW 6L: Change name in personal message
+                function changeName() {
+                    name = window.prompt("Type in your name to change welcome message", name);
+                    document.cookie = "name =" + escape(name);
+                    personalMessage();
+                }
+                //5/8/19 BVistan MOD 15L: function to print personalized greeting
+                function personalMessage() {
+                    const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    var Today = new Date();//5/8/19 BVistan NEW 1L: Define dat object
+                    var hour = Today.getHours();//5/8/19 BVistan NEW 2L: Variable for current hour
+                    var minute = Today.getMinutes();//5/8/19 BVistan NEW 2L: Variable for current minute
+                    var month = months[Today.getMonth()];//5/8/19 BVistan NEW 2L: Variable for current month
+                    var day = Today.getDate();//5/8/19 BVistan NEW 2L: Variable for current day
+                    var Weekday = weekdays[Today.getDay()];//5/8/19 BVistan NEW 2L: Variable for current weekday
+                    var year = Today.getFullYear();//5/8/19 BVistan NEW 2L: Variable for current year
+                    if (hour < 12)//5/8/19 BVistan NEW 1l: check if morning hour
+                        ID("Message").innerHTML = "Good morning " + name + " Welcome to our World of Stories";
+                    else {//5/8/19 BVistan NEW 5l: check if afternoon or evening
+                        if (hour < 18)
+                            ID("Message").innerHTML = "Good Afternoon " + name + " Welcome to our World of Stories";
+                        else
+                            ID("Message").innerHTML = "Good Evening " + name + " Welcome to our World of Stories";
+                    } // end else
+                    ID("myDate").innerHTML = "Today is " + Weekday +
+                       " " + month + " " + day + " " + ", " + year + " " + " " + hour + ":" + minute;
+                    ID("nameChange").innerHTML = "Are you not " + name + "?";
+                }
+                function getCookies() {
+                    if (document.cookie) {//4/28/19 BVistan NEW 11L: check doc for cookies
+                        var myCookie = unescape(document.cookie);
+                        var cookieTokens = myCookie.split("=");
+                        name = cookieTokens[1];
+                    }
+                    else {//4/28/19 BVistan NEW 2L: store name in cookies
+                        name = window.prompt("Type in your name for your welcome message", "Barron");
+                        document.cookie = "name =" + escape(name);
+                    }
+                }
+                function quotation() {
+                    const quotes = ["\"Whenever you feel like criticizing anyone ... just remember that all the people in this world haven't had the advantages that you've had.\"<br>&nbsp;-The Great Gatsby, F. Scott Fitzgerald",
+                        "\"All we have to decide is what to do with the time that is given us.\"<br>&nbsp;-The Fellowship of the Ring, J.R.R. Tolkein"
+                        , "\"It matters not what someone is born, but what they grow to be.\"<br>&nbsp;-Harry Potter and the Goblet of Fire, J.K. Rowling"
+                        , "\"We are such stuff as dreams are made on, and our little life is rounded with a sleep.\"<br>&nbsp;-The Tempest, William Shakespeare"];
+                    const bookImages = ["gatsby.png", "ring.png", "harry.png", "shakespeare.png"];
+                    var index = Math.floor(Math.random() * quotes.length);
+                    ID("Quote").innerHTML = quotes[index];
+                    ID("quoteImg").setAttribute("src", bookImages[index]);
+                }
+                function ID(text) {
+                    return document.getElementById(text);
+                }
+                window.addEventListener("load", start, false);
+    </script>
+    <header>
+        <a href="../home/home.html"><img src="../sharedImages/bookLogo.png" id="Logo" alt="logo" height="80" width="100"></a>
+        Citrion Books &amp; Learning Center
+    </header>
+    <div id="wrapper">
+        <span id="colorPicker">Change Background Color Here</span><p id="Times"></p>
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="../book/book.html" class="dropbtn">Books</a>
+                    <div class="dropdown-content">
+                        <a href="../fiction/fiction.html">Fiction</a>
+                        <a href="../nonfiction/nonFiction.html">Non-Fiction</a>
+                        <a href="../comic/comic.html">Comics</a>
+                    </div>
+                </li>
+                <li><a href="../sundry/sundry.html">Sundry</a></li>
+                <li><a href="../about/about.html">About</a></li>
+                <li><a href="../contact/contact.html">Contact</a></li>
+                <li class="dropdown">
+                    <a href="../center/center.html" class="dropbtn">Center</a>
+                    <div class="dropdown-content">
+                        <a href="../tutor/tutor.html">Tutoring</a>
+                        <a href="../writing/writing.html">Studio</a>
+                    </div>
+                </li>
+                <li><a href="../event/event.html">Events</a></li>
+                <li class="dropdown">
+                    <a href="../creative/creative.html" class="dropbtn">Creations</a>
+                    <div class="dropdown-content">
+                        <a href="../poetry/poetry.html">Poetry</a>
+                        <a href="../prose/prose.html">Prose</a>
+                    </div>
+                </li>
+                <li><a href="../membership/membership.html">Membership</a></li>
+            </ul>
+        </nav>
+        <main id="mainTag">
+            <img src="shelves.png" alt="slideShow" id="slides" height="100" width="300">
+            <h1 id="Message">Welcome</h1>
+            <h3 id="myDate">Today is</h3>
+            <img src="#" alt="bookquote" width="80" height="106" id="quoteImg"><h3 id="Quote">Nothing</h3>
+            <p id="nameChange"></p>
+            <a href="../tutor/tutor.html"><h3>Click here to try some of our quizes</h3></a>
+            <h1>Welcome to All Readers</h1>
+            <p>
+                Our store carries a diverse collection of genres for readers of ages. Wether it be a tome
+                from the world of fanasy or a cookbook with the lates of health tredns, we satisfy the wants of
+                even avid readers. Click on the <a href="../book/book.html" class="mainLink">book</a> tab in the navigation to visit the store.
+            </p>
+            <ul>
+                <li>Store Hours</li>
+                <li>Monday-Friday: 8:00am-9:00pm</li>
+                <li>Saturday-Sunday: 10:00am-7:00pm</li>
+            </ul>
+            <h1>Calling all writers</h1>
+            <p>
+                Our bookstore is not only a place to find great books; it's also a place to write them.
+                The Citrion Learning Center is an amazing place where writers can collaborate and create
+                new works. The center also provides tutoring to students from K-12 in many subjects. For more
+                info please click on the <a href="../center/center.html" class="mainLink">center</a> tab in the navagation.
+            </p>
+            <h2>News</h2>
+            <a href="../poetry/poetry.html">
+                <figure>
+                    <img src="../sharedImages/cafePoetry.png" alt="Coffee Poem" height="15" width="30">
+                    <figcaption>Poetry Contest<br>Sign up for the Spring Poetry Contest</figcaption>
+                </figure>
+            </a>
+            <a href="../fiction/fiction.html">
+                <figure>
+                    <img src="../sharedImages/bookSale.png" alt="Coffee Poem" height="15" width="30">
+                    <figcaption>Si-Fi &amp; Fantasy Sale<br>Get 30% of on all Si-Fi and Fantasy books</figcaption>
+                </figure>
+            </a>
+            <a href="../event/event.html">
+                <figure>
+                    <img src="../sharedImages/Tabletop.png" alt="Coffee Poem" height="15" width="30">
+                    <figcaption>Game Night<br>Join us for a night of table top fun</figcaption>
+                </figure>
+            </a>
+            <p id="mainTextLinks">Text Links: </p>
+        </main>
+        <footer>
+            <a href="../home/home.html">Home</a>|
+            <a href="../book/book.html">Books</a>|
+            <a href="../fiction/fiction.html">Fiction</a>|
+            <a href="../nonfiction/nonFiction.html">Non-Fiction</a>|
+            <a href="../sundry/sundry.html">Sundry</a>|
+            <a href="../about/about.html">About</a>|
+            <a href="../contact/contact.html">Contact</a>|<br>
+            <a href="../center/center.html">Center</a>|
+            <a href="../tutor/tutor.html">Tutoring</a>|
+            <a href="../writing/writing.html">Writing Studio</a>|
+            <a href="../event/event.html">Event</a>|
+            <a href="../creative/creative.html">Creations</a>|
+            <a href="../poetry/poetry.html">Poetry</a>|
+            <a href="../prose/prose.html">Prose</a>|
+            <a href="../membership/membership.html">Membership</a>|<br>
+            <a href="mailto:barronlewis.vistan-lucas@laverne.edu">barronlewis.vistan-lucas@laverne.edu</a>
+            <br>Best Viewed in Mozilla Firefox Version 66.0.3
+            &nbsp;Last Modified:<span id="lastModified"></span>
+        </footer>
+    </div>
+</body>
+</html>
