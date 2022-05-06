@@ -1,0 +1,187 @@
+﻿<!--/************************************************************
+* Name: Barron Lewis Vistan-Lucas
+* Class ID = 31
+* Class: CPMS 319
+* Assignment #: P5, Ch11: Grades 
+* Date Due: 3/09/19
+* Problem: Make a webpage with a personalized welcome message with a random image 
+and quote and a link to open a window for a quiz
+**************************************************************-->
+<!DOCTYPE HTML>
+<html lang = "en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Chemistry Quiz</title>
+	<style>
+	/*4/20/19 BVistan NEW 4L: Format questions and choices in block display*/
+	form {font-size: 12px;}
+    label, select{display: block;}
+    body{
+
+    }
+	</style>
+	<script>
+			//Project 4 Quiz Java Script
+		var right = 0;//4/20/19 BVistan NEW 1L: Track number of correct questions
+		var score;
+		var seconds = 10;
+		//4/20/19 BVistan MOD 45L: Check answers and print in main page
+		function grade_quiz() {
+		    window.opener.document.getElementById("Results").innerHTML += "<em>Chemistry Quiz<em><br>"
+		    	// Q1: Check question two
+			if (id("q1_correct").checked) {
+				window.opener.document.getElementById( "Results" ).innerHTML += "<img src='correct.png' alt='check'>Qestion 1 answered correctly<br>";
+				right++;
+			} else {
+				window.opener.document.getElementById( "Results" ).innerHTML += "<img src='incorrect.png' alt='check'>Qestion 1 answered incorrectly<br>";
+			}
+			
+			     // Q2: Check question one
+			if (id("q2_correct1").checked && id("q2_correct2").checked && 
+			!id("q2_wrong1").checked && !id("q2_wrong2").checked &&
+			!id("q2_wrong3").checked) {
+				window.opener.document.getElementById( "Results" ).innerHTML += "<img src='correct.png' alt='check' width='20' height='20'>Qestion 2 answered correctly<br>";		
+				right++;
+			} else {
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='incorrect.png' alt='check' width='20' height='20'>Qestion 2 answered incorrectly<br>";
+			}
+				
+			    // Q3: Check question three
+			if (id("sel").value == 2) {
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='correct.png' alt='check' width='20' height='20'>Qestion 3 answered correctly<br>";
+				right++;
+			} else {
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='incorrect.png' alt='check' width='20' height='20'>Qestion 3 answered incorrectly<br>";
+			}
+			     //4/20/19 BVistan NEW 4L: Check answers for Q4
+			if(id("slide").value == 6){
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='correct.png' alt='check' width='20' height='20'>Qestion 4 answered correctly<br>";
+				right++;
+			}
+			else{
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='incorrect.png' alt='check' width='20' height='20'>Qestion 4 answered incorrectly<br>";
+			}
+				//4/20/19 BVistan NEW 16L: display global percentage and letter grade
+			if(id("Q5").value == 2){
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='correct.png' alt='check' width='20' height='20'>Qestion 5 answered correctly<br>";
+				right++;
+			}
+			else{
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='incorrect.png' alt='check' width='20' height='20'>Qestion 5 answered incorrectly<br>";
+			}
+			if (id("q6_correct").checked) {
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='correct.png' alt='check'>Qestion 6 answered correctly<br>";
+			    right++;
+			} else {
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='incorrect.png' alt='check'>Qestion 6 answered incorrectly<br>";
+			}
+			scores(right);
+			window.opener.focus();//4/20/19 BVistan NEW 1L: Focus on parent page
+			window.opener.document.getElementById("resultDetail").setAttribute("open", "open");
+			window.close();//4/20/19 BVistan NEW 1L: Close child window
+		}
+		    //4/20/19 BVistan MOD 12L: Function to calculate score
+		function scores(){
+		    score = (100 * parseFloat(right / 6.0)).toFixed(2);
+		    //score = score.toFixed(2);
+			if(score>90)
+				window.opener.document.getElementById( "Results" ).innerHTML +="You scored a "+right+"/6="+score+"% Excelent<br>";
+			else if(score>80)
+				window.opener.document.getElementById( "Results" ).innerHTML +="You scored a "+right+"/6="+score+"% Good<br>";
+			else if(score>70)
+				window.opener.document.getElementById( "Results" ).innerHTML +="You scored a "+right+"/6="+score+"% Passing<br>";
+			else
+				window.opener.document.getElementById( "Results" ).innerHTML +="You scored a "+right+"/6="+score+"% Try Harder<br>";	
+			right = 0;
+		}
+		function id(text) {
+			return document.getElementById(text);
+		}
+		function start() {					
+			// registration grade_quiz
+			id("submit").addEventListener("click", grade_quiz, false);
+			id("quiz").reset(); //4/20/19 BVistan NEW 1L: reset form answers when loading
+			window.setInterval("timerCounter()", 1000);
+		}
+		function show_value2(x)
+		{
+		  id("slider_value").innerHTML=x; 
+		}
+		function mark(question, text)
+		{
+			id(question).setAttribute("src", text+".png");
+		}
+        // register the load event for function start
+		function timerCounter(){
+            seconds--;
+            id("Timer").innerHTML = seconds;
+            if (seconds <= 0) {
+                window.opener.focus();//4/20/19 BVistan NEW 1L: Focus on parent page
+                window.opener.document.getElementById("resultDetail").setAttribute("open", "open");
+                window.close();//4/20/19 BVistan NEW 1L: Close child window
+            }
+		}
+		window.addEventListener("load", start, false);
+	</script>
+</head>
+
+<body>
+    <h1 id="Timer">10</h1>
+	<h1>Chemistry Quiz</h1>
+    <form action="#" id="quiz">
+        <!--4/20/19 BVistan MOD 16L: Change topic of question and answers-->
+        <p>
+            1. What is the name of this table?
+            <br>
+            <img src="periodicTable.png" alt="mystery tip" height="100" width="180">
+            <label><input type="radio" name="radiobutton" value="elements">Table of Elements</label>
+            <label><input type="radio" name="radiobutton" value="EPT">Chemical Chart</label>
+            <label><input type="radio" name="radiobutton" id="q1_correct" value="PT">Periodic Table</label>
+            <label><input type="radio" name="radiobutton" value="PORT">PH Table</label><br>
+        </p>
+
+        <!--4/20/19 BVistan MOD 6L: Change topic of question and answers-->
+        <p>
+            2. Which of these is a noble gas?
+            <label><input type="checkbox" id="q2_wrong3">Oxygen</label>
+            <label><input type="checkbox" id="q2_wrong1">Lithium</label>
+            <label><input type="checkbox" id="q2_correct2">Helium</label>
+            <label><input type="checkbox" id="q2_wrong2">Hydrogen</label>
+            <label><input type="checkbox" id="q2_correct1">Neon</label>
+        </p>
+        <!--4/20/19 BVistan MOD 7L: Change topic of question and answers-->
+        <p>
+            3. Which type of particle orbits the nucleus of the atom?
+            <select id="sel">
+                <option value="01"> Neutron </option>
+                <option id="q3_correct" value="02"> Electron </option>
+                <option value="03"> Proton </option>
+                <option value="04"> Photon </option>
+                <option value="05"> Quark </option>
+            </select>
+
+        </p>
+        <!--4/20/19 BVistan NEW 4L: Added a range question on form-->
+        <p>
+            4. What is the atomic number of carbon of?
+            <div id="slider_value">25</div><br>
+            0<input type="range" min="0" max="50" step="1" id="slide" onchange="show_value2(this.value)"> 50
+            <!--4/20/19 BVistan NEW 3L: Added a number question on form-->
+        <p>
+            5. How many covalent bonds are in a water molecule?
+            <br><input type="number" min="0" step="2" id="Q5" value="0">
+        </p>
+        <!--5/19/19 BVistan NEW 10L: New question to chemistry quix-->
+        <p>
+            6. Which one is not a typical property of a metal element?
+            <label><input type="radio" name="radiobutton" value="elements">Higly Malleable</label>
+            <label><input type="radio" name="radiobutton" value="EPT">Goood Conductor of Heat and Electricity</label>
+            <label><input type="radio" name="radiobutton" value="PT">High Melting Point</label>
+            <label><input type="radio" name="radiobutton" id="q6_correct" value="PORT">Very Brittle</label><br>
+        </p>
+        <input type="button" id="submit" value="Grade Quiz">
+        <input type="reset">
+    </form>
+</body>
+</html>

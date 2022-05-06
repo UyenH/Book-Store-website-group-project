@@ -1,0 +1,174 @@
+﻿<!--/************************************************************
+* Name: Barron Lewis Vistan-Lucas
+* Class ID = 31
+* Class: CPMS 319
+* Assignment #: P5, Ch11: Grades 
+* Date Due: 3/09/19
+* Problem: Make a webpage with a personalized welcome message with a random image 
+and quote and a link to open a window for a quiz
+**************************************************************-->
+<!DOCTYPE HTML>
+<html lang = "en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Chemistry Quiz</title>
+	<style>
+	/*4/20/19 BVistan NEW 4L: Format questions and choices in block display*/
+	form {font-size: 12px;}
+    label, select{display: block;}
+    body{
+
+    }
+	</style>
+	<script>
+			//Project 4 Quiz Java Script
+		var right = 0;//4/20/19 BVistan NEW 1L: Track number of correct questions
+		var score;
+		var seconds = 60;
+		//4/20/19 BVistan MOD 45L: Check answers and print in main page
+		function grade_quiz() {
+		    window.opener.document.getElementById("Results").innerHTML += "<em>Chemistry Quiz<em><br>"
+		    	// Q1: Check question two
+			if (id("q1_correct").checked) {
+				window.opener.document.getElementById( "Results" ).innerHTML += "<img src='correct.png' alt='check'>Qestion 1 answered correctly<br>";
+				right++;
+			} else {
+				window.opener.document.getElementById( "Results" ).innerHTML += "<img src='incorrect.png' alt='check'>Qestion 1 answered incorrectly<br>";
+			}
+			
+			     // Q2: Check question one
+			if (id("q2_correct1").checked && id("q2_correct2").checked && 
+			!id("q2_wrong1").checked && !id("q2_wrong2").checked &&
+			!id("q2_wrong3").checked) {
+				window.opener.document.getElementById( "Results" ).innerHTML += "<img src='correct.png' alt='check' width='20' height='20'>Qestion 2 answered correctly<br>";		
+				right++;
+			} else {
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='incorrect.png' alt='check' width='20' height='20'>Qestion 2 answered incorrectly<br>";
+			}
+				
+			    // Q3: Check question three
+			if (id("sel").value == 2) {
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='correct.png' alt='check' width='20' height='20'>Qestion 3 answered correctly<br>";
+				right++;
+			} else {
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='incorrect.png' alt='check' width='20' height='20'>Qestion 3 answered incorrectly<br>";
+			}
+			     //4/20/19 BVistan NEW 4L: Check answers for Q4
+			if(id("slide").value == 4){
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='correct.png' alt='check' width='20' height='20'>Qestion 4 answered correctly<br>";
+				right++;
+			}
+			else{
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='incorrect.png' alt='check' width='20' height='20'>Qestion 4 answered incorrectly<br>";
+			}
+				//4/20/19 BVistan NEW 16L: display global percentage and letter grade
+			if(id("Q5").value == 5){
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='correct.png' alt='check' width='20' height='20'>Qestion 5 answered correctly<br>";
+				right++;
+			}
+			else{
+			    window.opener.document.getElementById("Results").innerHTML += "<img src='incorrect.png' alt='check' width='20' height='20'>Qestion 5 answered incorrectly<br>";
+			}
+			scores(right);
+			window.opener.focus();//4/20/19 BVistan NEW 1L: Focus on parent page
+			window.opener.document.getElementById("resultDetail").setAttribute("open", "open");
+			window.close();//4/20/19 BVistan NEW 1L: Close child window
+		}
+		    //4/20/19 BVistan MOD 12L: Function to calculate score
+		function scores(){
+		    score = (100 * parseFloat(right / 5.0)).toFixed(2);
+		    //score = score.toFixed(2);
+			if(score>90)
+				window.opener.document.getElementById( "Results" ).innerHTML +="You scored a "+right+"/6="+score+"% Excelent<br>";
+			else if(score>80)
+				window.opener.document.getElementById( "Results" ).innerHTML +="You scored a "+right+"/6="+score+"% Good<br>";
+			else if(score>70)
+				window.opener.document.getElementById( "Results" ).innerHTML +="You scored a "+right+"/6="+score+"% Passing<br>";
+			else
+				window.opener.document.getElementById( "Results" ).innerHTML +="You scored a "+right+"/6="+score+"% Try Harder<br>";	
+			right = 0;
+		}
+		function id(text) {
+			return document.getElementById(text);
+		}
+		function start() {					
+			// registration grade_quiz
+			id("submit").addEventListener("click", grade_quiz, false);
+			id("quiz").reset(); //4/20/19 BVistan NEW 1L: reset form answers when loading
+			window.setInterval("timerCounter()", 1000);
+		}
+		function show_value2(x)
+		{
+		  id("slider_value").innerHTML=x; 
+		}
+		function mark(question, text)
+		{
+			id(question).setAttribute("src", text+".png");
+		}
+        // register the load event for function start
+		function timerCounter(){
+            seconds--;
+            id("Timer").innerHTML = seconds;
+            if (seconds <= 0) {
+                window.opener.focus();//4/20/19 BVistan NEW 1L: Focus on parent page
+                window.opener.document.getElementById("resultDetail").setAttribute("open", "open");
+                window.close();//4/20/19 BVistan NEW 1L: Close child window
+            }
+		}
+		window.addEventListener("load", start, false);
+	</script>
+</head>
+
+<body>
+    <h1 id="Timer">1:00</h1>
+	<h1>Chemistry Quiz</h1>
+    <form action="#" id="quiz">
+        <!--4/20/19 BVistan MOD 16L: Change topic of question and answers-->
+        <p>
+            1. What is a push or pull exerted on an object?
+            <br>
+            <label><input type="radio" name="radiobutton" id="q1_correct" value="elements">Force</label>
+            <label><input type="radio" name="radiobutton" value="EPT">Energy</label>
+            <label><input type="radio" name="radiobutton" value="PT">Heat</label>
+            <label><input type="radio" name="radiobutton" value="PORT">Mass</label><br>
+        </p>
+
+        <!--4/20/19 BVistan MOD 6L: Change topic of question and answers-->
+        <p>
+            2. Which of these is are a derivative of position?
+            <label><input type="checkbox" id="q2_correct2">Acceleration</label>
+            <label><input type="checkbox" id="q2_wrong1">Work</label>
+            <label><input type="checkbox" id="q2_wrong3">Density</label>
+            <label><input type="checkbox" id="q2_wrong2">Joules</label>
+            <label><input type="checkbox" id="q2_correct1">Velocity</label>
+        </p>
+        <!--4/20/19 BVistan MOD 7L: Change topic of question and answers-->
+        <p>
+            3. _____ is said to be done when a force of 1 Newton moves an object 
+            of mass 1gram, 1 meter in the direction of the force?
+            <select id="sel">
+                <option value="01"> Weight </option>
+                <option id="q3_correct" value="02"> Work </option>
+                <option value="03"> Force </option>
+                <option value="04"> Friction </option>
+                <option value="05"> Energy </option>
+            </select>
+
+        </p>
+        <!--4/20/19 BVistan NEW 4L: Added a range question on form-->
+        <p>
+            4. What is the acceleration when a force of 20 Newtons is applied on 5 kilogram object?
+            <div id="slider_value">25</div>m/s<br>
+            0<input type="range" min="0" max="50" step="1" id="slide" onchange="show_value2(this.value)"> 50
+            <!--4/20/19 BVistan NEW 3L: Added a number question on form-->
+        <p>
+            5. What is the speed of an object that travels 35 meters in 7 seconds?
+            <br><input type="number" min="0" step="2" id="Q5" value="0">
+        </p>
+        <!--5/19/19 BVistan NEW 10L: New question to chemistry quix-->
+        <input type="button" id="submit" value="Grade Quiz">
+        <input type="reset">
+    </form>
+</body>
+</html>
